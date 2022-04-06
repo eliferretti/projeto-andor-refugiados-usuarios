@@ -1,0 +1,101 @@
+﻿@model Andor.Models.Formacao
+@{
+    ViewData["Title"] = "Create";
+    var id_pessoa = ViewData["Id_pessoa"];
+    var mensagem = TempData["mensagem"];
+}
+<div class="container-fluid pt-0 bg-light">
+<div class="container text-black-50 p-3">
+
+    <div class="row justify-content-center">
+        <!-- coluna esquerda -->
+        <!--
+        <div class="col-6">
+            <img class="col-md-12" src=~/img/formacao.jpg />
+        </div>
+        -->
+        <!-- coluna direita -->
+        <div class="col-11 bg-cards-1">
+            @if (mensagem != null)
+            {
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>@mensagem</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            }
+            <h4 class="text-right">Formação profissional</h4>
+            <hr />
+            <form asp-action="formacaoCreate" class="needs-validation" novalidate>
+                <div class="form-group" style="display:none">
+                    <input type="text" value="@ViewData["Id_pessoa"]" asp-for="Id_pessoa" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Curso / Graduação *</label>
+                    <input asp-for="Nome" type="text" class="form-control" aria-required="true" required minlength="3" maxlength="40" autofocus />
+                    <div class="invalid-feedback" role="alert"> Informe sua formação. </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Descrição *</label>
+                    <textarea asp-for="Descricao" type="text" class="form-control" aria-required="true" required minlength="5" maxlength="200"></textarea>
+                    <div class="invalid-feedback" role="alert"> Informe uma breve descrição sobre sua formação. </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Instituição *</label>
+                    <input asp-for="Instituicao" type="text" class="form-control" aria-required="true" required minlength="2" maxlength="20"/>
+                    <div class="invalid-feedback" role="alert"> Informe a Instituição de ensino. </div>
+                </div>
+                <div class="form-group col-6">
+                    <label class="control-label">Data de início *</label>
+                    <input asp-for="Inicio" type="date" class="form-control" aria-required="true" required min="1948-01-01" max="2030-12-31"/>
+                    <div class="invalid-feedback" role="alert"> Informe a data de início da formação. </div>
+                </div>
+                <div class="form-group col-6">
+                    <label class="control-label">Data de conclusão</label>
+                    <input asp-for="Fim" type="date" class="form-control" min="1948-01-01" max="2030-12-31"/>
+                </div>
+                <div class="form-group col-6">
+                    <label class="control-label">Situação *</label>
+                    <select class="custom-select form-control" asp-for="Situacao" aria-required="true" required>
+                        <option selected disabled value="">-</option>
+                        <option>Completo</option>
+                        <option>Incompleto</option>
+                    </select>
+                    <div class="invalid-feedback" role="alert"> Selecione uma opção. </div>
+                </div>
+                <div class="form-group d-flex mt-4 justify-content-end">
+                    <hr />
+                    <input type="submit" value="Adicionar" class="btn m-1 btn-editar " />
+                    <a asp-controller="Pessoa" asp-action="Details" asp-route-id="@id_pessoa" class="btn btn-editar m-1 ">Voltar</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <br />
+    <br />
+    <br />
+    <br />
+</div>
+</div>
+
+<script>
+    // desativa comportamento padrão do html5 se houver campos inválidos.
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Pega todos os formulários que nós queremos aplicar estilos de validação Bootstrap personalizados.
+        var forms = document.getElementsByClassName('needs-validation');
+        // Faz um loop neles e evita o envio caso não esteja validado
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+</script>
