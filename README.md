@@ -9,5 +9,16 @@
     <p>
         Além de informativo, nosso site promove a oferta e facilitação para aluguel de imóveis bem como a oferta de empregos para pessoas refugiadas. Dessa forma facilitando a escolha de para qual região do Brasil deverá seguir, com a certeza de que terá um lugar para morar e um emprego pra sustentar sua família.
     </p>
+    <br />
+    <h4>Tecnologias</h4>
+
+    - Html
+    - CSS
+    - Bootstrap
+    - jQuery
+    - JavaScript
+    - Razor pages
+    - Asp.Net Core MVC
+    - MSSql Server
 </div>
 
